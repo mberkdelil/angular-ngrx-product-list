@@ -1,0 +1,128 @@
+<!-- Product List -->
+
+<div class="container mt-2">
+    <div class="row">
+        <ng-container *ngFor="let item of jeweleryProducts">
+            <div class="card col-md-3">
+
+                <img src={{item.image}}>
+                <hr>
+                <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100ch;">
+                    {{item.title}} </h5>
+                <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100ch;">
+                    {{item.description}} </p>
+                <p>{{item.price | currency}} </p>
+                <button (click)="addToCart(item.id,item)" class="btn btn-info">Add To Cart</button>
+                <button (click)="deleteProduct(item.id)" class="btn btn-danger mt-2">Remove To Product List</button>
+                <button (click)="getEditProduct(item.id)" data-toggle="modal" data-target="#editModal"
+                    class="btn btn-dark mt-2 mb-2">Edit Product</button>
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<h1 *ngIf="jeweleryProducts.length === 0" class="jumbotron text-center">Jewelery products in this category have been deleted.
+</h1>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="editProductForm">
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Id</label>
+                        <input formControlName="id" type="number" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp">
+                        <span
+                            *ngIf="editProductForm.get('id')?.hasError('required') && editProductForm.controls['id']?.touched"
+                            style="color: red; font-size: 14px;">Product id is required *</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Title</label>
+                        <input formControlName="title" type="text" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter Product Title">
+                        <span
+                            *ngIf="editProductForm.get('title')?.hasError('required') && editProductForm.controls['title']?.touched"
+                            style="color: red; font-size: 14px;">Product title is required *</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Category</label>
+                        <select formControlName="category" class="custom-select" id="inputGroupSelect01">
+                            <option value={{editProductForm.value.category}} selected>{{editProductForm.value.category}}
+                            </option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Fashion">Fashion</option>
+                            <option value="Jewellery">Jewellery</option>
+                            <option value="men's clothing">men's clothing</option>
+                            <option value="women's clothing">women's clothing</option>
+                        </select>
+                        <span
+                            *ngIf="editProductForm.get('category')?.hasError('required') && editProductForm.controls['category']?.touched"
+                            style="color: red; font-size: 14px;">Product category is required *</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Description</label>
+                        <input formControlName="description" type="text" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter Product Description">
+                        <span
+                            *ngIf="editProductForm.get('description')?.hasError('required') && editProductForm.controls['description']?.touched"
+                            style="color: red; font-size: 14px;">Product description is required *</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Price</label>
+                        <input formControlName="price" type="text" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter Product Price">
+                        <span
+                            *ngIf="editProductForm.get('price')?.hasError('required') && editProductForm.controls['price']?.touched"
+                            style="color: red; font-size: 14px;">Product price is required *</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Image URL</label>
+                        <input formControlName="image" type="text" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter Product Image URL">
+                        <span
+                            *ngIf="editProductForm.get('image')?.hasError('required') && editProductForm.controls['image']?.touched"
+                            style="color: red; font-size: 14px;">Product image is required *</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Rating</label>
+                        <input formControlName="rating" type="text" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter Product Rating">
+                        <span
+                            *ngIf="editProductForm.get('rating')?.hasError('required') && editProductForm.controls['rating']?.touched"
+                            style="color: red; font-size: 14px;">Product rating is required *</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Count</label>
+                        <input formControlName="count" type="text" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter Product Count">
+                        <span
+                            *ngIf="editProductForm.get('count')?.hasError('required') && editProductForm.controls['count']?.touched"
+                            style="color: red; font-size: 14px;">Product count is required *</span>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button (click)="editProduct()" [disabled]="editProductForm.invalid" type="button"
+                    class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>

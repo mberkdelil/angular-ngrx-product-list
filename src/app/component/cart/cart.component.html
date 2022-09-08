@@ -1,0 +1,79 @@
+<ng-container *ngIf="cart.length!==0">
+    <div class="container">
+        <div class="card-table">
+            <div class="cart-product">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sr.No</th>
+                            <th>Product Name</th>
+                            <th>Product Image</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Product Count</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of cart">
+                            <td>{{item.id}}</td>
+                            <td>{{item.name}}</td>
+                            <td>
+                                <img src={{item.image}} width="200" height="200" alt="product.title">
+                            </td>
+                            <td>{{item.description}}</td>
+                            <td>{{item.price}}</td>
+                            <td>
+                                There is a total of <strong><u>{{item.count}}</u></strong> of this product in your cart
+
+
+                            </td>
+                            <td>{{item.count * item.price | currency}}</td>
+                            <td>
+                                <button style="width: 50px" (click)="increaseButton(item.id)"
+                                    class="btn btn-success">+1</button>
+                                <strong style="margin-left: 20px;" class="fw-bold text-align-center"> {{item.count}}
+                                </strong>
+                                <br>
+                                <button style="width: 50px" [disabled]="item.count === 0"
+                                    (click)="decreaseButton(item.id)" class="btn btn-danger">-1</button>
+                            </td>
+                            <td><button (click)="deleteFromCart(item.id)" class="btn btn-danger">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"></td>
+                            <td>
+                                <button (click)="emptyButton(1)" class="btn btn-danger">Empty Cart</button>
+                            </td>
+                            <td>
+                                <button routerLink="/all-products" class="btn btn-dark">Shop More</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-success">Checkout</button>
+                            </td>
+                            <td><strong>Total Count: {{totalCount}} </strong></td>
+                            <td><strong>Grand Total : ${{totalPrice | currency}} </strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+
+<ng-container *ngIf="cart.length == 0">
+    <div class="container">
+        <div class="card">
+            <h5 class="card-title">My Cart</h5>
+        </div>
+        <div class="center">
+            <img src="../../../assets/images/empty.png" alt="Your cart is empty!">
+            <h4>Your cart is empty!</h4>
+            <h6>Add item to it now</h6>
+            <button routerLink="/all-products" class="btn btn-info">Shop Now</button>
+        </div>
+    </div>
+</ng-container>

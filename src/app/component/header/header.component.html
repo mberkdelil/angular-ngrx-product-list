@@ -1,0 +1,146 @@
+<header>
+    <div class="navbar bg-info shadow-sm">
+        <div class="navbar-brand align-item-center d-flex">
+            <i routerLink="/products" style="font-size: 40px; color:white; cursor: pointer;"
+                class="fas fa-shipping-fast">&nbsp;
+                <strong>Angular Cart</strong>
+            </i>
+            <div class="form-group">
+                <input (change)="filterText($event)" style="border-radius: 3px; width: 600px; margin-left: 20%"
+                    type="text" class="form-control" placeholder="Search Products and Press Enter">
+            </div>
+            <span style="position: absolute; z-index: 10; right: 40%; color: black; top: 25%"
+                class="fas fa-search search-icon"></span>
+        </div>
+        <button data-toggle="modal" data-target="#exampleModal" class="btn btn-warning">Add New Product</button>
+        <button routerLink="/cart" class="btn btn-info">
+            <i style="font-size: 30px" class="fas fa-cart-plus"></i>
+            <div style="font-size: 13px; color:black" class="badge bg-warning">{{cartLength}}</div>
+        </button>
+    </div>
+</header>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addNewProductForm">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Title</label>
+                        <input formControlName="title" type="text" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter Product Title">
+                        <span
+                            *ngIf="addNewProductForm.get('title')?.hasError('required') && addNewProductForm.controls['title']?.touched"
+                            style="color: red; font-size: 14px;">Product title is required *</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Category</label>
+                        <select formControlName="category" class="custom-select" id="inputGroupSelect01">
+                            <option selected>Select Product Category</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Fashion">Fashion</option>
+                            <option value="Jewellery">Jewelery</option>
+                            <option value="men's clothing">men's clothing</option>
+                            <option value="women's clothing">women's clothing</option>
+                        </select>
+                        <span
+                            *ngIf="addNewProductForm.get('category')?.hasError('required') && addNewProductForm.controls['category']?.touched"
+                            style="color: red; font-size: 14px;">Product category is required *</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Description</label>
+                        <input formControlName="description" type="text" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter Product Description">
+                        <span
+                            *ngIf="addNewProductForm.get('description')?.hasError('required') && addNewProductForm.controls['description']?.touched"
+                            style="color: red; font-size: 14px;">Product description is required *</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Price</label>
+                        <input formControlName="price" type="text" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter Product Price">
+                        <span
+                            *ngIf="addNewProductForm.get('price')?.hasError('required') && addNewProductForm.controls['price']?.touched"
+                            style="color: red; font-size: 14px;">Product price is required *</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Image URL</label>
+                        <input formControlName="image" type="text" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter Product Image URL">
+                        <span
+                            *ngIf="addNewProductForm.get('price')?.hasError('required') && addNewProductForm.controls['price']?.touched"
+                            style="color: red; font-size: 14px;">Product image is required *</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Rating</label>
+                        <input formControlName="rating" type="text" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter Product Rating">
+                        <span
+                            *ngIf="addNewProductForm.get('rating')?.hasError('required') && addNewProductForm.controls['rating']?.touched"
+                            style="color: red; font-size: 14px;">Product rating is required *</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Count</label>
+                        <input formControlName="count" type="text" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter Product Count">
+                        <span
+                            *ngIf="addNewProductForm.get('count')?.hasError('required') && addNewProductForm.controls['count']?.touched"
+                            style="color: red; font-size: 14px;">Product count is required *</span>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button (click)="addNewProduct()" [disabled]="addNewProductForm.invalid" type="button"
+                    class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card-top container-fluid">
+    <div class="container d-flex">
+        <div class="item">
+            <a>
+                <img routerLink="/all-products" width="100" height="100" src="../../../assets/images/allproducts.jpg"
+                    alt="All_Product">
+                <h6>All Products</h6>
+            </a>
+        </div>&nbsp;&nbsp;&nbsp;
+        <div class="item">
+            <a>
+                <img routerLink="/products/electronics" style="border-radius: 50%" width="100" height="100"
+                    src="../../../assets/images/electronics.jpg" alt="All_Product">
+                <h6>Electronics</h6>
+            </a>
+        </div>&nbsp;&nbsp;&nbsp;
+        <div class="item">
+            <a>
+                <img routerLink="/products/fashion" style="border-radius: 50%" width="100" height="100"
+                    src="../../../assets/images/fashion.jpg" alt="All_Product">
+                <h6>Fashion</h6>
+            </a>
+        </div>&nbsp;&nbsp;&nbsp;
+        <div class="item">
+            <a>
+                <img routerLink="/products/jewelery" style="border-radius: 50%" width="100" height="100"
+                    src="../../../assets/images/jewellery.jpg" alt="All_Product">
+                <h6>Jewellery</h6>
+            </a>
+        </div>
+    </div>
+</div>
