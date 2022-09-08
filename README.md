@@ -1,27 +1,24 @@
-# ShoppingCart
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.4.
 
-## Development server
+https://user-images.githubusercontent.com/91894010/189209448-e193fdc4-ad88-4c31-96ea-bddaaf5577c1.mp4
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+https://user-images.githubusercontent.com/91894010/189209537-12dd1482-1c7a-494e-995a-659d5fcb740c.mp4
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+https://user-images.githubusercontent.com/91894010/189209573-28fa118a-d160-48e0-b1fe-59b37fe96604.mp4
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+https://user-images.githubusercontent.com/91894010/189209599-b28442b3-cf08-4da5-9412-01177e53a3de.mp4
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+https://user-images.githubusercontent.com/91894010/189209638-3dab209e-6c58-4de0-a7f6-307506282739.mp4
+
+
+
+https://user-images.githubusercontent.com/91894010/189209652-73918eff-b608-40dc-81d6-bd1a8a5ced21.mp4
+
